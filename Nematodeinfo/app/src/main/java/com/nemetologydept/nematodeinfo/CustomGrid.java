@@ -1,14 +1,17 @@
 package com.nemetologydept.nematodeinfo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class CustomGrid extends BaseAdapter{
+
+public class CustomGrid extends BaseAdapter {
     private Context mContext;
     private final String[] web;
     private final int[] Imageid;
@@ -38,7 +41,7 @@ public class CustomGrid extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         View grid;
         LayoutInflater inflater = (LayoutInflater) mContext
@@ -56,6 +59,27 @@ public class CustomGrid extends BaseAdapter{
             grid = (View) convertView;
         }
 
+
+        grid.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Toast.makeText(v.getContext(), "You Clicked "+web[position], Toast.LENGTH_SHORT).show();
+
+
+                switch(position) {
+                    case 0:
+
+                       Intent i = new Intent(v.getContext(), Rice.class);
+                        mContext.startActivity(i);
+
+                }
+
+
+            }
+
+        });
         return grid;
     }
 }
